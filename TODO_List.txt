@@ -1,0 +1,7 @@
+Taski:
+    - Wykorzystanie algorytmu wieloryba i świetlika do optymalizacji trasy
+    - Problem komiwojażera
+    - przedstawienie i porównanie funkcji matematycznych
+    - generowanie punktów do trasy
+    - symulacja AI
+    - omówienie działania i różnic
