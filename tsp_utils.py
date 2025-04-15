@@ -10,6 +10,7 @@ def calculate_distance_matrix(points):
 
 def evaluate_route(route, dist_matrix):
     distance = 0
-    for i in range(len(route)):
-        distance += dist_matrix[route[i - 1], route[i]]
+    n = len(route)
+    for i in range(n):
+        distance += dist_matrix[route[i], route[(i + 1) % n]]  # (i+1) % n umożliwia zamknięcie pętli
     return distance
