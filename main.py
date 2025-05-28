@@ -18,8 +18,9 @@ def load_points(filename="points.npy"):
 
 def main():
     #
-    num_iterations = 60
-    num_agents = 1000
+    generate_num = 5
+    num_iterations = 20
+    num_agents = 40000
     #firefly
     alpha = 0.4
     beta = 1
@@ -34,17 +35,18 @@ def main():
     # beta - siła przyciągania słabszych świetlików do tych jaśniejszych
     # gamma - tłumienie światła, zasięg przyciągania
     def firefly():
-        fa = FireflyOptimizer(dist_matrix, num_agents, num_iterations, alpha, beta, gamma)
-        fa_route, fa_distance, fa_history = fa.optimize()
-        print(f"[Firefly] Najlepszy dystans: {fa_distance}")
-        plot_route(points, fa_route, title="Najlepsza trasa – Firefly")
-        print(f"[Firefly] Liczba iteracji w historii: {len(fa_history)}")
-        animate_route_to_gif(points, fa_history,
-                             filename=f"dane/firefly_{alpha},{beta},{gamma}_{int(fa_distance)}_{num_iterations}_{num_agents}.gif",
-                             title="Firefly – Ewolucja trasy")
+        for i in range(generate_num):
+            fa = FireflyOptimizer(dist_matrix, num_agents, num_iterations, alpha, beta, gamma)
+            fa_route, fa_distance, fa_history = fa.optimize()
+            print(f"[Firefly] Najlepszy dystans: {fa_distance}")
+            plot_route(points, fa_route, title="Najlepsza trasa – Firefly")
+            print(f"[Firefly] Liczba iteracji w historii: {len(fa_history)}")
+            animate_route_to_gif(points, fa_history,
+                                 filename=f"dane/firefly_{alpha},{beta},{gamma}_{int(fa_distance)}_{num_iterations}_{num_agents}.gif",
+                                 title="Firefly – Ewolucja trasy")
 
     def whale():
-        for i in range(20):
+        for i in range(generate_num):
             #b - kąty spirali
             c = b + random.uniform(-0.05,0.05)
             woa = WhaleOptimizer(dist_matrix, num_agents, num_iterations, c)
@@ -56,10 +58,10 @@ def main():
                                  filename=f"dane/whale_{c:.2f}_{int(woa_distance)}_{num_iterations}_{num_agents}.gif",
                                  title="Whale – Ewolucja trasy")
 
-    firefly()
-    print(f"Firefly Done")
-    # whale()
-    # print(f"Whale Done")
+    # firefly()
+    # print(f"Firefly Done")
+    whale()
+    print(f"Whale Done")
 
 if __name__ == "__main__":
     main()
