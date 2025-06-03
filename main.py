@@ -19,7 +19,7 @@ def load_points(filename="points.npy"):
 def main():
     #
     generate_num = 5
-    num_iterations = 20
+    num_iterations = 15
     num_agents = 40000
     #firefly
     alpha = 0.4
