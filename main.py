@@ -7,7 +7,6 @@ from plot_utils import plot_route, animate_route_to_gif
 
 def load_points(filename="points.npy"):
     points = np.load(filename)
-    # Jeśli dane są jednowymiarowe, spróbuj przekształcić je do (n,2)
     if points.ndim == 1 or points.shape[1] != 2:
         try:
             points = points.reshape(-1, 2)
@@ -19,7 +18,7 @@ def load_points(filename="points.npy"):
 def main():
     #
     generate_num = 5
-    num_iterations = 20
+    num_iterations = 15
     num_agents = 40000
     #firefly
     alpha = 0.4
